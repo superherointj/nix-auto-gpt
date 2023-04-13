@@ -1,0 +1,62 @@
+{ pkgs ? import <nixpkgs> { } }:
+
+with pkgs;
+
+mkShell {
+  pname = "auto-gpt";
+  version = "0.0.1"; # bogus development version
+
+  buildInputs = with pkgs.python3.pkgs; [
+    python3
+    beautifulsoup4
+    colorama
+    openai
+    playsound
+    python-dotenv
+    pyyaml
+    readability-lxml
+    requests
+    tiktoken
+    gtts
+    docker
+    duckduckgo-search
+    google-api-python-client
+    pinecone-client
+    redis
+    orjson
+    pillow
+  ];
+
+  shellHook = ''
+    tput setaf 2; echo "=== Auto-GPT Flake Environment ==="; tput sgr0; echo
+    if ! test -e ".env"; then
+      tput setaf 3; echo "ATTENTION:"; tput sgr0; tput setaf 5
+      echo '- File ".env" is missing:'
+      echo '  - Rename ".env.template" to ".env".'
+      echo "  - Obtain your API keys from:"
+      echo "    * https://www.pinecone.io/"
+      echo "    * https://platform.openai.com/account/api-keys"
+      echo '  - Configure at ".env":'
+      echo "    1. OPENAI_API_KEY"
+      echo "    2. PINECONE_API_KEY"
+      echo "    3. PINECONE_ENV"
+      tput sgr0
+    else
+      checkKey () {
+        KEY_NAME="$1"
+        KEY_VALUE="$2"
+        MSG="$3"
+        if [[ `cat .env | grep "$KEY_NAME" | cut -d'=' -f2` == "$KEY_VALUE" ]]; then
+          tput setaf 3; printf "Attention: "; tput sgr0
+          echo "$KEY_NAME is unchanged."
+          tput setaf 4; echo "$MSG"; tput sgr0; echo
+        fi
+      }
+      checkKey "PINECONE_API_KEY" "your-pinecone-api-key" "Update \".env\" file with Pinecone API Keys obtained from: https://www.pinecone.io/"
+      checkKey "PINECONE_ENV"     "your-pinecone-region"  "Update \".env\" file with API Keys environment value obtained from: https://www.pinecone.io/"
+      checkKey "OPENAI_API_KEY"   "your-openai-api-key"   "Update \".env\" file with OpenAI API key obtained from: https://platform.openai.com/account/api-keys"
+    fi
+    tput setaf 13; echo "  - To run Auto-GPT, execute:"; echo
+    echo "    python3 scripts/main.py"; tput sgr0; echo
+  '';
+}
