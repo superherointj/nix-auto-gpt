@@ -9,29 +9,27 @@ python3.pkgs.buildPythonApplication rec {
   pname = "auto-gpt";
   version = "0.0.1";
 
-  # format = "setuptools";
-
   src = ./.;
 
   nativeBuildInputs = with python3.pkgs; [
-    python3 # setuptools
+    python3
   ];
 
   propagatedBuildInputs = with python3.pkgs; [
     beautifulsoup4
-    colorama #==0.4.6
-    openai #==0.27.2
-    playsound #==1.2.2
-    python-dotenv #==1.0.0
-    pyyaml #==6.0
-    readability-lxml #==0.8.1
+    colorama
+    openai
+    playsound
+    python-dotenv
+    pyyaml
+    readability-lxml
     requests
-    tiktoken #==0.3.3
-    gtts # gTTS==2.3.1
-    docker # docker
+    tiktoken
+    gtts
+    docker
     duckduckgo-search
     google-api-python-client
-    pinecone-client #==2.2.1
+    pinecone-client
     redis
     orjson
     pillow
