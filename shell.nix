@@ -25,6 +25,9 @@ mkShell {
     redis
     orjson
     pillow
+    coverage
+    flake8
+    numpy
   ];
 
   shellHook = ''
