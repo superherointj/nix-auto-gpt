@@ -28,6 +28,10 @@ mkShell {
     coverage
     flake8
     numpy
+    #pre-commit # Needs to confirm package at Nixpkgs.
+    black
+    #sourcery # Needs to be packaged at Nixpkgs.
+    isort
   ];
 
   shellHook = ''
