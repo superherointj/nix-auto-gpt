@@ -25,6 +25,7 @@ mkShell {
     redis
     orjson
     pillow
+    selenium
     coverage
     flake8
     numpy
