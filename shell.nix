@@ -26,6 +26,7 @@ mkShell {
     orjson
     pillow
     selenium
+    # webdriver-manager # Needs to be packaged at Nixpkgs.
     coverage
     flake8
     numpy
