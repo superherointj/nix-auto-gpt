@@ -1,6 +1,7 @@
 { fetchFromGitHub
 , lib
 , python3
+, pkgs
 }:
 
 python3.pkgs.buildPythonPackage rec {
@@ -14,12 +15,14 @@ python3.pkgs.buildPythonPackage rec {
     hash = "sha256-5fyzwoqbW5Nkt+YDltnHk+OizlZC7wpSNzmz8apEPu4=";
   };
 
-  propagatedBuildInputs = with python3.pkgs; [
+  propagatedBuildInputs = (with python3.pkgs; [
     requests
     python-dotenv
     tqdm
     packaging
-  ];
+  ]) ++ (with pkgs; [
+    chromedriver
+  ]);
 
   nativeBuildInputs = with python3.pkgs; [ ];
 
