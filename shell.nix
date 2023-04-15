@@ -32,7 +32,7 @@ mkShell {
     numpy
     #pre-commit # Needs to confirm package at Nixpkgs.
     black
-    #sourcery # Needs to be packaged at Nixpkgs.
+    (pkgs.callPackage ./sourcery.nix { }) # Fix-Me: Upstream to nixpkgs.
     isort
   ];
 
