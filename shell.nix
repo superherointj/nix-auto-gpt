@@ -26,7 +26,7 @@ mkShell {
     orjson
     pillow
     selenium
-    # webdriver-manager # Needs to be packaged at Nixpkgs.
+    (pkgs.callPackage ./webdriver-manager.nix { }) # Fix-Me: Upstream to nixpkgs.
     coverage
     flake8
     numpy
