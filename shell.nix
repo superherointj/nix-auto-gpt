@@ -66,6 +66,6 @@ mkShell {
       checkKey "OPENAI_API_KEY"   "your-openai-api-key"   "Update \".env\" file with OpenAI API key obtained from: https://platform.openai.com/account/api-keys"
     fi
     tput setaf 13; echo "  - To run Auto-GPT, execute:"; echo
-    echo "    python3 scripts/main.py"; tput sgr0; echo
+    echo "    python -m autogpt"; tput sgr0; echo
   '';
 }
