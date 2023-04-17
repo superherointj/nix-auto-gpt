@@ -20,6 +20,13 @@ While that doesn't happen, you have to manually configure automatically loading 
 
     > echo ".envrc" >> .git/info/exclude
 
-
+## License
 
 This repository is licensed: MIT
+
+## Contributing
+
+Contributions are welcomed!
+As Auto-GPT is under heavy changes, this becomes even more important.
+Please, contribute fixes or open issues in case you have issues.
+Any help is appreciated.
