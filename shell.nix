@@ -1,12 +1,19 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ callPackage
+, mkShell
+, python3
+}:
 
-with pkgs;
+let
+  # Fix-Me: Upstream to nixpkgs
+  webdriver-manager = callPackage ./webdriver-manager.nix { };
+  sourcery = callPackage ./sourcery.nix { };
+in
 
 mkShell {
   pname = "auto-gpt";
   version = "0.0.1"; # bogus development version
 
-  buildInputs = with pkgs.python3.pkgs; [
+  buildInputs = with python3.pkgs; [
     python3
     beautifulsoup4
     colorama
@@ -26,17 +33,28 @@ mkShell {
     orjson
     pillow
     selenium
-    (pkgs.callPackage ./webdriver-manager.nix { }) # Fix-Me: Upstream to nixpkgs.
+    webdriver-manager
+    jsonschema
+    tweepy
+
+    ## Dev
     coverage
     flake8
     numpy
     #pre-commit # Needs to confirm package at Nixpkgs.
     black
-    (pkgs.callPackage ./sourcery.nix { }) # Fix-Me: Upstream to nixpkgs.
+    sourcery
     isort
     GitPython
-    tweepy
-    jsonschema
+
+    # Testing dependencies
+    pytest
+    asynctest
+    pytest-asyncio
+    pytest-benchmark
+    pytest-cov
+    #pytest-integration # Needs to confirm package at Nixpkgs.
+    pytest-mock
   ];
 
   shellHook = ''
