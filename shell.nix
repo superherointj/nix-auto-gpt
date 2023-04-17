@@ -34,6 +34,9 @@ mkShell {
     black
     (pkgs.callPackage ./sourcery.nix { }) # Fix-Me: Upstream to nixpkgs.
     isort
+    GitPython
+    tweepy
+    jsonschema
   ];
 
   shellHook = ''
