@@ -1,7 +1,7 @@
 # nix-auto-gpt
 
 
-To manually load development environment for Auto-GPT, run:
+To manually load development environment for [Auto-GPT](https://github.com/Significant-Gravitas/Auto-GPT), run:
 
 > nix develop github:superherointj/nix-auto-gpt
 
