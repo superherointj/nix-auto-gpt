@@ -36,6 +36,7 @@ mkShell {
     webdriver-manager
     jsonschema
     tweepy
+    click
     spacy
 
     ## Dev
