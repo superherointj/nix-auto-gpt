@@ -38,6 +38,7 @@ mkShell {
     tweepy
     click
     spacy
+    spacy_models.en_core_web_sm
 
     ## Dev
     coverage
