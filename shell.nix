@@ -1,20 +1,28 @@
 { callPackage
-, mkShell
+, mkShellNoCC
 , python3
 }:
 
 let
   # Fix-Me: Upstream to nixpkgs
   webdriver-manager = callPackage ./webdriver-manager.nix { };
+  # Fix-Me: Upstream to nixpkgs
   sourcery = callPackage ./sourcery.nix { };
-in
+  # Fix-Me: Upstream to nixpkgs
+  abstract_singleton = callPackage ./abstract-singleton.nix { };
+  # Fix-Me: Upstream to nixpkgs
+  auto-gpt-plugin-template = callPackage ./auto-gpt-plugin-template.nix { };
+  # Fix-Me: Upstream to nixpkgs
+  openapi_python_client = callPackage ./openapi_python_client.nix { };
 
-mkShell {
-  pname = "auto-gpt";
-  version = "0.0.1"; # bogus development version
+  pythonPackages = p: with p; [
+    abstract_singleton
+    openapi_python_client
+    auto-gpt-plugin-template
 
-  buildInputs = with python3.pkgs; [
-    python3
+    httpcore
+    httpx
+    distro
     beautifulsoup4
     colorama
     openai
@@ -58,6 +66,17 @@ mkShell {
     pytest-cov
     #pytest-integration # Needs to confirm package at Nixpkgs.
     pytest-mock
+  ];
+
+in
+
+mkShellNoCC {
+  pname = "auto-gpt";
+  version = "0.3.0"; # bogus development version
+
+
+  buildInputs = [
+    (python3.withPackages pythonPackages)
   ];
 
   shellHook = ''
