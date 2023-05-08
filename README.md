@@ -15,3 +15,5 @@ This repository is licensed: MIT
 
 Contributions are welcomed. As Auto-GPT is under heavy changes, contributing is even more important.
 Please, report issues and contribute fixes. Any help is appreciated.
+
+For improving/extending Nix dependencies, add new libraries to [nixpkgs-friendly-overlay](https://github.com/nixpkgs-friendly/nixpkgs-friendly-overlay) (easier, it's under our domain) or nixpkgs.
