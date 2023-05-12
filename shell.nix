@@ -42,7 +42,6 @@ let pythonPackages = p: with p;
     numpy
     #pre-commit # Needs to confirm package at Nixpkgs.
     black
-    sourcery
     isort
     GitPython
 
